@@ -13,7 +13,7 @@ export default function CorpsSmpLanding() {
   const [audioError, setAudioError] = useState<string | null>(null)
   const [showCopiedAnimation, setShowCopiedAnimation] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
-  const serverIP = "play.corpssmp.net"
+  const serverIP = "play.corpssmp.lol"
 
   useEffect(() => {
     setIsVisible(true)
