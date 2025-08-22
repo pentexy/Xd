@@ -4,40 +4,40 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color scheme for futuristic blue/white with neon accents */
-  --background: oklch(0.05 0.02 240); /* Dark space background */
-  --foreground: oklch(0.95 0.01 240); /* Bright white text */
-  --card: oklch(0.08 0.03 240); /* Dark blue cards with transparency */
-  --card-foreground: oklch(0.95 0.01 240); /* Bright text on cards */
-  --popover: oklch(0.08 0.03 240);
-  --popover-foreground: oklch(0.95 0.01 240);
-  --primary: oklch(0.6 0.2 240); /* Bright neon blue */
-  --primary-foreground: oklch(0.05 0.02 240);
-  --secondary: oklch(0.7 0.25 180); /* Neon cyan accent */
-  --secondary-foreground: oklch(0.05 0.02 240);
-  --muted: oklch(0.12 0.03 240);
-  --muted-foreground: oklch(0.7 0.05 240);
-  --accent: oklch(0.8 0.3 300); /* Neon purple accent */
-  --accent-foreground: oklch(0.05 0.02 240);
-  --destructive: oklch(0.7 0.3 0); /* Neon red */
-  --destructive-foreground: oklch(0.05 0.02 240);
-  --border: oklch(0.2 0.1 240); /* Glowing borders */
-  --input: oklch(0.08 0.03 240);
-  --ring: oklch(0.6 0.2 240 / 0.8); /* Bright focus ring */
-  --chart-1: oklch(0.6 0.2 240);
-  --chart-2: oklch(0.7 0.25 180);
-  --chart-3: oklch(0.8 0.3 300);
-  --chart-4: oklch(0.7 0.3 0);
-  --chart-5: oklch(0.75 0.25 60);
+  /* Updated to clean blue and white theme without neon effects */
+  --background: oklch(0.98 0.01 240); /* Clean white background */
+  --foreground: oklch(0.15 0.05 240); /* Dark blue text */
+  --card: oklch(0.95 0.02 240); /* Light blue-tinted cards */
+  --card-foreground: oklch(0.15 0.05 240); /* Dark text on cards */
+  --popover: oklch(0.95 0.02 240);
+  --popover-foreground: oklch(0.15 0.05 240);
+  --primary: oklch(0.5 0.15 240); /* Clean blue primary */
+  --primary-foreground: oklch(0.98 0.01 240);
+  --secondary: oklch(0.6 0.12 200); /* Light blue secondary */
+  --secondary-foreground: oklch(0.98 0.01 240);
+  --muted: oklch(0.92 0.02 240);
+  --muted-foreground: oklch(0.4 0.08 240);
+  --accent: oklch(0.55 0.18 220); /* Soft blue accent */
+  --accent-foreground: oklch(0.98 0.01 240);
+  --destructive: oklch(0.6 0.2 0); /* Clean red */
+  --destructive-foreground: oklch(0.98 0.01 240);
+  --border: oklch(0.85 0.03 240); /* Subtle borders */
+  --input: oklch(0.95 0.02 240);
+  --ring: oklch(0.5 0.15 240 / 0.3); /* Subtle focus ring */
+  --chart-1: oklch(0.5 0.15 240);
+  --chart-2: oklch(0.6 0.12 200);
+  --chart-3: oklch(0.55 0.18 220);
+  --chart-4: oklch(0.6 0.2 0);
+  --chart-5: oklch(0.65 0.15 60);
   --radius: 0.5rem;
-  --sidebar: oklch(0.08 0.03 240);
-  --sidebar-foreground: oklch(0.95 0.01 240);
-  --sidebar-primary: oklch(0.6 0.2 240);
-  --sidebar-primary-foreground: oklch(0.05 0.02 240);
-  --sidebar-accent: oklch(0.12 0.03 240);
-  --sidebar-accent-foreground: oklch(0.95 0.01 240);
-  --sidebar-border: oklch(0.2 0.1 240);
-  --sidebar-ring: oklch(0.6 0.2 240 / 0.8);
+  --sidebar: oklch(0.95 0.02 240);
+  --sidebar-foreground: oklch(0.15 0.05 240);
+  --sidebar-primary: oklch(0.5 0.15 240);
+  --sidebar-primary-foreground: oklch(0.98 0.01 240);
+  --sidebar-accent: oklch(0.92 0.02 240);
+  --sidebar-accent-foreground: oklch(0.15 0.05 240);
+  --sidebar-border: oklch(0.85 0.03 240);
+  --sidebar-ring: oklch(0.5 0.15 240 / 0.3);
   /* Updated font variables for futuristic fonts */
   --font-orbitron: "Orbitron", sans-serif;
   --font-poppins: "Poppins", sans-serif;
@@ -46,39 +46,39 @@
 }
 
 .dark {
-  /* Same colors for consistent futuristic theme */
-  --background: oklch(0.05 0.02 240);
+  /* Dark mode with clean blue and white theme */
+  --background: oklch(0.08 0.02 240);
   --foreground: oklch(0.95 0.01 240);
-  --card: oklch(0.08 0.03 240);
+  --card: oklch(0.12 0.03 240);
   --card-foreground: oklch(0.95 0.01 240);
-  --popover: oklch(0.08 0.03 240);
+  --popover: oklch(0.12 0.03 240);
   --popover-foreground: oklch(0.95 0.01 240);
-  --primary: oklch(0.6 0.2 240);
-  --primary-foreground: oklch(0.05 0.02 240);
-  --secondary: oklch(0.7 0.25 180);
-  --secondary-foreground: oklch(0.05 0.02 240);
-  --muted: oklch(0.12 0.03 240);
+  --primary: oklch(0.6 0.15 240);
+  --primary-foreground: oklch(0.08 0.02 240);
+  --secondary: oklch(0.7 0.12 200);
+  --secondary-foreground: oklch(0.08 0.02 240);
+  --muted: oklch(0.15 0.03 240);
   --muted-foreground: oklch(0.7 0.05 240);
-  --accent: oklch(0.8 0.3 300);
-  --accent-foreground: oklch(0.05 0.02 240);
-  --destructive: oklch(0.7 0.3 0);
-  --destructive-foreground: oklch(0.05 0.02 240);
-  --border: oklch(0.2 0.1 240);
-  --input: oklch(0.08 0.03 240);
-  --ring: oklch(0.6 0.2 240 / 0.8);
-  --chart-1: oklch(0.6 0.2 240);
-  --chart-2: oklch(0.7 0.25 180);
-  --chart-3: oklch(0.8 0.3 300);
-  --chart-4: oklch(0.7 0.3 0);
-  --chart-5: oklch(0.75 0.25 60);
-  --sidebar: oklch(0.08 0.03 240);
+  --accent: oklch(0.65 0.18 220);
+  --accent-foreground: oklch(0.08 0.02 240);
+  --destructive: oklch(0.7 0.2 0);
+  --destructive-foreground: oklch(0.08 0.02 240);
+  --border: oklch(0.2 0.05 240);
+  --input: oklch(0.12 0.03 240);
+  --ring: oklch(0.6 0.15 240 / 0.3);
+  --chart-1: oklch(0.6 0.15 240);
+  --chart-2: oklch(0.7 0.12 200);
+  --chart-3: oklch(0.65 0.18 220);
+  --chart-4: oklch(0.7 0.2 0);
+  --chart-5: oklch(0.75 0.15 60);
+  --sidebar: oklch(0.12 0.03 240);
   --sidebar-foreground: oklch(0.95 0.01 240);
-  --sidebar-primary: oklch(0.6 0.2 240);
-  --sidebar-primary-foreground: oklch(0.05 0.02 240);
-  --sidebar-accent: oklch(0.12 0.03 240);
+  --sidebar-primary: oklch(0.6 0.15 240);
+  --sidebar-primary-foreground: oklch(0.08 0.02 240);
+  --sidebar-accent: oklch(0.15 0.03 240);
   --sidebar-accent-foreground: oklch(0.95 0.01 240);
-  --sidebar-border: oklch(0.2 0.1 240);
-  --sidebar-ring: oklch(0.6 0.2 240 / 0.8);
+  --sidebar-border: oklch(0.2 0.05 240);
+  --sidebar-ring: oklch(0.6 0.15 240 / 0.3);
 }
 
 @theme inline {
@@ -134,62 +134,39 @@
   }
 }
 
-/* Enhanced animations for futuristic cyber effects */
-@keyframes glow {
+/* Simplified animations without heavy glow effects */
+@keyframes subtle-glow {
   0%,
   100% {
-    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor, 0 0 20px oklch(0.6 0.2 240), 0 0
-      35px oklch(0.6 0.2 240);
+    text-shadow: 0 0 2px currentColor;
   }
   50% {
-    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor, 0 0 40px oklch(0.6 0.2 240), 0 0
-      70px oklch(0.6 0.2 240);
-  }
-}
-
-@keyframes neon-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 5px oklch(0.6 0.2 240), 0 0 10px oklch(0.6 0.2 240), 0 0 15px oklch(0.6 0.2 240), inset 0 0 5px
-      oklch(0.6 0.2 240 / 0.2);
-  }
-  50% {
-    box-shadow: 0 0 10px oklch(0.6 0.2 240), 0 0 20px oklch(0.6 0.2 240), 0 0 30px oklch(0.6 0.2 240), inset 0 0 10px
-      oklch(0.6 0.2 240 / 0.3);
-  }
-}
-
-@keyframes cyber-grid {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 40px 40px;
+    text-shadow: 0 0 4px currentColor;
   }
 }
 
 @keyframes ash-glow {
   0%,
   100% {
-    text-shadow: 0 0 10px oklch(0.8 0.02 0), 0 0 20px oklch(0.9 0.01 0), 0 0 30px oklch(1 0 0);
+    text-shadow: 0 0 5px oklch(0.8 0.02 0), 0 0 10px oklch(0.9 0.01 0);
   }
   50% {
-    text-shadow: 0 0 20px oklch(0.8 0.02 0), 0 0 40px oklch(0.9 0.01 0), 0 0 60px oklch(1 0 0);
+    text-shadow: 0 0 10px oklch(0.8 0.02 0), 0 0 20px oklch(0.9 0.01 0);
   }
 }
 
 @keyframes bounce-shine {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 oklch(0.6 0.2 240 / 0.7), 0 0 10px oklch(0.6 0.2 240);
+    box-shadow: 0 2px 4px oklch(0.5 0.15 240 / 0.2);
   }
   50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 15px oklch(0.6 0.2 240 / 0), 0 0 30px oklch(0.6 0.2 240);
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px oklch(0.5 0.15 240 / 0.3);
   }
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 oklch(0.6 0.2 240 / 0), 0 0 10px oklch(0.6 0.2 240);
+    box-shadow: 0 2px 4px oklch(0.5 0.15 240 / 0.2);
   }
 }
 
@@ -211,10 +188,10 @@
 @keyframes success-glow {
   0%,
   100% {
-    box-shadow: 0 0 5px oklch(0.7 0.3 120), 0 0 10px oklch(0.7 0.3 120), 0 0 15px oklch(0.7 0.3 120);
+    box-shadow: 0 2px 4px oklch(0.7 0.3 120 / 0.3);
   }
   50% {
-    box-shadow: 0 0 10px oklch(0.7 0.3 120), 0 0 20px oklch(0.7 0.3 120), 0 0 30px oklch(0.7 0.3 120);
+    box-shadow: 0 4px 8px oklch(0.7 0.3 120 / 0.4);
   }
 }
 
@@ -229,17 +206,13 @@
   }
 }
 
-/* Added new futuristic animation classes */
+/* Updated animation classes with subtle effects */
 .animate-glow {
-  animation: glow 2s ease-in-out infinite;
+  animation: subtle-glow 2s ease-in-out infinite;
 }
 
 .animate-ash-glow {
   animation: ash-glow 3s ease-in-out infinite;
-}
-
-.animate-neon-glow {
-  animation: neon-glow 2s ease-in-out infinite;
 }
 
 .animate-bounce-shine {
@@ -274,27 +247,9 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Updated backgrounds for futuristic cyber theme */
+/* Clean blue and white gradient background without cyber effects */
 .gradient-bg {
-  background: radial-gradient(circle at 20% 80%, oklch(0.15 0.1 240 / 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, oklch(0.15 0.1 180 / 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, oklch(0.15 0.1 300 / 0.2) 0%, transparent 50%),
-    linear-gradient(135deg, oklch(0.05 0.02 240) 0%, oklch(0.08 0.03 240) 100%);
-  position: relative;
-}
-
-.gradient-bg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(oklch(0.2 0.1 240 / 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(0.2 0.1 240 / 0.1) 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: cyber-grid 20s linear infinite;
-  pointer-events: none;
+  background: linear-gradient(135deg, oklch(0.98 0.01 240) 0%, oklch(0.95 0.02 240) 50%, oklch(0.92 0.03 240) 100%);
 }
 
 .ash-gradient-text {
@@ -304,30 +259,20 @@ html {
   background-clip: text;
 }
 
-.neon-border {
-  border: 1px solid oklch(0.6 0.2 240);
-  box-shadow: 0 0 5px oklch(0.6 0.2 240 / 0.5), inset 0 0 5px oklch(0.6 0.2 240 / 0.1);
+/* Removed neon borders and cyber effects */
+.clean-border {
+  border: 1px solid oklch(0.85 0.03 240);
+  box-shadow: 0 2px 4px oklch(0.5 0.15 240 / 0.1);
 }
 
-.cyber-card {
-  background: oklch(0.08 0.03 240 / 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid oklch(0.2 0.1 240 / 0.5);
-  position: relative;
-  overflow: hidden;
+.clean-card {
+  background: oklch(0.95 0.02 240);
+  border: 1px solid oklch(0.85 0.03 240);
+  box-shadow: 0 2px 8px oklch(0.5 0.15 240 / 0.1);
+  transition: all 0.3s ease;
 }
 
-.cyber-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, oklch(0.6 0.2 240 / 0.1), transparent);
-  transition: left 0.5s;
-}
-
-.cyber-card:hover::before {
-  left: 100%;
+.clean-card:hover {
+  box-shadow: 0 4px 16px oklch(0.5 0.15 240 / 0.15);
+  transform: translateY(-2px);
 }

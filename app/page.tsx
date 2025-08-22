@@ -142,7 +142,21 @@ export default function CorpsSmpLanding() {
 
   const copyServerIP = async () => {
     try {
-      await navigator.clipboard.writeText(serverIP)
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(serverIP)
+      } else {
+        // Fallback for non-HTTPS environments
+        const textArea = document.createElement("textarea")
+        textArea.value = serverIP
+        textArea.style.position = "fixed"
+        textArea.style.left = "-999999px"
+        textArea.style.top = "-999999px"
+        document.body.appendChild(textArea)
+        textArea.focus()
+        textArea.select()
+        document.execCommand("copy")
+        textArea.remove()
+      }
       setCopied(true)
       setShowCopiedAnimation(true)
       setTimeout(() => {
@@ -151,6 +165,7 @@ export default function CorpsSmpLanding() {
       }, 2000)
     } catch (err) {
       console.error("Failed to copy:", err)
+      alert(`Please copy manually: ${serverIP}`)
     }
   }
 
@@ -186,7 +201,7 @@ export default function CorpsSmpLanding() {
           onClick={toggleMusic}
           size="sm"
           variant="outline"
-          className="neon-border animate-neon-glow bg-background/80 backdrop-blur-sm"
+          className="clean-border bg-background/80 backdrop-blur-sm"
           title={audioError || (musicLoaded ? "Toggle music" : "Loading music...")}
         >
           {isPlaying ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
@@ -223,7 +238,7 @@ export default function CorpsSmpLanding() {
                 <Button
                   onClick={copyServerIP}
                   size="lg"
-                  className={`text-lg px-8 py-6 transition-all duration-300 hover:scale-105 neon-border animate-neon-glow font-medium ${
+                  className={`text-lg px-8 py-6 transition-all duration-300 hover:scale-105 clean-border font-medium ${
                     copied ? "bg-green-600 hover:bg-green-700 text-white" : "bg-primary hover:bg-primary/90"
                   } ${showCopiedAnimation ? "animate-bounce" : ""}`}
                 >
@@ -284,12 +299,12 @@ export default function CorpsSmpLanding() {
             ].map((item, index) => (
               <Card
                 key={index}
-                className="text-center cyber-card hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in-up neon-border"
+                className="text-center clean-card hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <CardContent className="p-8">
                   <div className="text-secondary mx-auto mb-4 flex justify-center animate-glow">{item.icon}</div>
-                  <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 neon-border animate-neon-glow">
+                  <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 clean-border">
                     {item.step}
                   </div>
                   <h3 className="text-xl font-semibold mb-3 text-foreground font-serif">{item.title}</h3>
@@ -331,7 +346,7 @@ export default function CorpsSmpLanding() {
             ].map((rule, index) => (
               <Card
                 key={index}
-                className="text-center cyber-card hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in-up neon-border"
+                className="text-center clean-card hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <CardContent className="p-8">
@@ -356,7 +371,7 @@ export default function CorpsSmpLanding() {
             <Button
               asChild
               size="lg"
-              className="text-lg px-8 py-6 bg-secondary hover:bg-secondary/90 transition-all duration-300 hover:scale-105 neon-border animate-neon-glow font-medium"
+              className="text-lg px-8 py-6 bg-secondary hover:bg-secondary/90 transition-all duration-300 hover:scale-105 clean-border font-medium"
             >
               <a href="https://t.me/CorpsSmp" target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="mr-2 h-5 w-5" />
@@ -367,7 +382,7 @@ export default function CorpsSmpLanding() {
             <Button
               asChild
               size="lg"
-              className="text-lg px-8 py-6 bg-accent hover:bg-accent/90 transition-all duration-300 hover:scale-105 neon-border animate-neon-glow font-medium animate-delay-200"
+              className="text-lg px-8 py-6 bg-accent hover:bg-accent/90 transition-all duration-300 hover:scale-105 clean-border font-medium animate-delay-200"
             >
               <a href="https://t.me/EternalAura" target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="mr-2 h-5 w-5" />
