@@ -10,13 +10,28 @@ export default function CorpsSmpLanding() {
   const [isVisible, setIsVisible] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [musicLoaded, setMusicLoaded] = useState(false)
+  const [audioError, setAudioError] = useState<string | null>(null)
   const [showCopiedAnimation, setShowCopiedAnimation] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
   const serverIP = "play.corpssmp.net"
 
   useEffect(() => {
     setIsVisible(true)
+    testAudioUrl()
   }, [])
+
+  const testAudioUrl = async () => {
+    try {
+      const response = await fetch("https://files.catbox.moe/su3mg2.mp3", {
+        method: "HEAD",
+        mode: "no-cors", // Handle CORS issues
+      })
+      console.log("[v0] Audio URL test completed")
+    } catch (error) {
+      console.log("[v0] Audio URL test failed:", error)
+      setAudioError("Audio file may not be accessible due to network restrictions")
+    }
+  }
 
   const toggleMusic = async () => {
     if (!audioRef.current) return
@@ -26,21 +41,103 @@ export default function CorpsSmpLanding() {
         audioRef.current.pause()
         setIsPlaying(false)
       } else {
-        audioRef.current.volume = 0.3
-        await audioRef.current.play()
-        setIsPlaying(true)
+        const audio = audioRef.current
+
+        if (audio.readyState < HTMLMediaElement.HAVE_ENOUGH_DATA) {
+          console.log("[v0] Audio not ready, waiting...")
+          setAudioError("Audio is still loading, please wait...")
+          return
+        }
+
+        if (!musicLoaded && audio.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+          setAudioError("Audio file could not be loaded - external source may be blocked")
+          return
+        }
+
+        audio.volume = 0.3
+
+        const playPromise = audio.play()
+        if (playPromise !== undefined) {
+          const timeoutPromise = new Promise((_, reject) => {
+            setTimeout(() => reject(new Error("Play timeout")), 5000)
+          })
+
+          await Promise.race([playPromise, timeoutPromise])
+          setIsPlaying(true)
+          setAudioError(null)
+        }
       }
     } catch (error) {
-      console.error("Music playback failed:", error)
+      console.error("[v0] Music playback failed:", error)
+      setIsPlaying(false)
+
+      if (error instanceof Error) {
+        if (error.message.includes("interrupted")) {
+          setAudioError("Audio playback interrupted - please try again")
+        } else if (error.message.includes("timeout")) {
+          setAudioError("Audio loading timed out - file may be unavailable")
+        } else {
+          setAudioError(`Playback failed: ${error.message}`)
+        }
+      } else {
+        setAudioError("Audio playback failed - external file may be blocked")
+      }
     }
   }
 
   const handleAudioLoad = () => {
+    console.log("[v0] Audio loaded successfully")
     setMusicLoaded(true)
+    setAudioError(null)
+  }
+
+  const handleAudioError = (e: Event) => {
+    console.log("[v0] Audio error event:", e)
+    const audio = audioRef.current
+    if (audio && audio.error) {
+      const errorCode = audio.error.code
+      const errorMessage = audio.error.message || "Unknown error"
+      console.log("[v0] Audio error details - Code:", errorCode, "Message:", errorMessage)
+
+      let userFriendlyError = "Failed to load background music"
+      switch (errorCode) {
+        case MediaError.MEDIA_ERR_ABORTED:
+          userFriendlyError = "Audio loading was cancelled"
+          break
+        case MediaError.MEDIA_ERR_NETWORK:
+          userFriendlyError = "Network error - external audio file blocked"
+          break
+        case MediaError.MEDIA_ERR_DECODE:
+          userFriendlyError = "Audio file is corrupted or unsupported"
+          break
+        case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
+          userFriendlyError = "Audio source blocked by browser security"
+          break
+        default:
+          userFriendlyError = `Audio error (Code: ${errorCode})`
+      }
+      setAudioError(userFriendlyError)
+    } else {
+      console.log("[v0] Audio error but no error object available")
+      setAudioError("External audio file is blocked or unavailable")
+    }
+    setMusicLoaded(false)
+    setIsPlaying(false)
   }
 
   const handleAudioEnd = () => {
     setIsPlaying(false)
+  }
+
+  const handleAudioProgress = () => {
+    const audio = audioRef.current
+    if (audio && audio.buffered.length > 0) {
+      const buffered = audio.buffered.end(0)
+      const duration = audio.duration
+      if (duration > 0) {
+        console.log("[v0] Audio loading progress:", Math.round((buffered / duration) * 100), "%")
+      }
+    }
   }
 
   const copyServerIP = async () => {
@@ -63,12 +160,25 @@ export default function CorpsSmpLanding() {
       <audio
         ref={audioRef}
         loop
+        preload="metadata"
         onLoadedData={handleAudioLoad}
+        onError={handleAudioError}
+        onProgress={handleAudioProgress}
         onEnded={handleAudioEnd}
         onPause={() => setIsPlaying(false)}
         onPlay={() => setIsPlaying(true)}
+        onCanPlay={() => {
+          console.log("[v0] Audio can start playing")
+          setMusicLoaded(true)
+        }}
+        onLoadStart={() => console.log("[v0] Audio loading started")}
+        onStalled={() => console.log("[v0] Audio loading stalled")}
+        onSuspend={() => console.log("[v0] Audio loading suspended")}
+        onWaiting={() => console.log("[v0] Audio waiting for data")}
+        crossOrigin="anonymous"
       >
         <source src="https://files.catbox.moe/su3mg2.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
       </audio>
 
       <div className="fixed top-4 right-4 z-50">
@@ -77,10 +187,15 @@ export default function CorpsSmpLanding() {
           size="sm"
           variant="outline"
           className="neon-border animate-neon-glow bg-background/80 backdrop-blur-sm"
-          disabled={!musicLoaded}
+          title={audioError || (musicLoaded ? "Toggle music" : "Loading music...")}
         >
           {isPlaying ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
         </Button>
+        {audioError && (
+          <div className="absolute top-full mt-2 right-0 bg-red-500/90 text-white text-xs p-2 rounded max-w-48 z-10">
+            {audioError}
+          </div>
+        )}
       </div>
 
       {/* Hero Section */}
